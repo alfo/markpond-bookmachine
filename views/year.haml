@@ -7,16 +7,16 @@
 
 #colophon
   %p 
-    &copy; 2004-#{Time.now.year} Tom Armitage
+    &copy; 2012-#{Time.now.year} Alex Forey
     %br
     Set in Minion Pro and Helvetica Neue Light.
-    Data extracted from Pinboard.
+    Data extracted from Markpond.
     %br
-    http://pinboard.in/u:infovore
+    http://markpond.com/u?u=alex
 
 #cover
   %h1 A Year of Links: #{@year.year_string}
-  %h2 Tom Armitage
+  %h2 Alex Forey
   %h3 Volume #{@year.volume_number}
 
 #toc
@@ -45,6 +45,8 @@
                     %h4= h bookmark.description
                     .href= h bookmark.href
                     .desc= h bookmark.extended
+                    - if bookmark.via
+                      .via= h "Via: " + bookmark.via
                     .tags 
                       -output = []
                       - bookmark.tags.each do |t|
@@ -60,4 +62,3 @@
       %li
         = tag
         = @previous_tags.count(tag).times.map {|i| "<a href='##{tag}-#{i+1}'></a>"}.join(", ")
-
