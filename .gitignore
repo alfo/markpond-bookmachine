@@ -1,1 +1,4 @@
 development.db
+.DS_Store
+data
+.sass-cache
