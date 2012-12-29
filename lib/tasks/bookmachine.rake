@@ -7,6 +7,7 @@ task :environment do
   require 'sinatra'
   require 'sinatra/activerecord'
   require 'nokogiri'
+  require 'htmlentities'
   require File.expand_path('../../../bookmachine', __FILE__)
 end
 
@@ -20,11 +21,17 @@ namespace :ingest do
     doc = Nokogiri::XML(file)
     doc.css("post").each do |post|
       b = Bookmark.new
-      b.href = post.attr("href")
-      b.description = post.attr("description")
-      b.extended = post.attr("extended")
+      b.href = post.attr("href").gsub(/&?utm_.+?(&|$)/, '')
+      b.archive = post.attr("archive")
+      b.description = HTMLEntities.new.decode post.attr("description")
+      if post.attr("extended")
+        b.extended = HTMLEntities.new.decode post.attr("extended")
+      else
+        b.extended = ""
+      end
       b.bookmark_hash = post.attr("hash")
       b.meta = post.attr("meta")
+      b.via = post.attr("via")
       b.bookmarked_at = Time.parse(post.attr("time"))
       b.raw_tags = post.attr("tag")
       b.created_at = Time.now
