@@ -11,14 +11,8 @@ class Bookmark < ActiveRecord::Base
   belongs_to :year
 
   def tags
-<<<<<<< HEAD
-    if raw_tags
-      raw_tags.split(" ")
-=======
-    # Fixed by @infovore
     if raw_tags
       raw_tags.split(' ')
->>>>>>> Markpond-specific changes
     else
       []
     end
