@@ -12,7 +12,7 @@ class Bookmark < ActiveRecord::Base
 
   def tags
     if raw_tags
-      raw_tags.split(' ')
+      raw_tags.split(',')
     else
       []
     end
@@ -31,10 +31,10 @@ class Bookmark < ActiveRecord::Base
   end
 
   def qr_for_url
-    if archive
+    if archive_url
       "http://qrcode.kaywa.com/img.php?s=8&d=#{CGI.escape(archive)}"
     else
-      "http://qrcode.kaywa.com/img.php?s=8&d=#{CGI.escape(href)}"
+      "http://qrcode.kaywa.com/img.php?s=8&d=#{CGI.escape(url)}"
     end
   end
 end

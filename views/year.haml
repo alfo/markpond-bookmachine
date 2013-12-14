@@ -9,10 +9,10 @@
   %p 
     &copy; 2012-#{Time.now.year} Alex Forey
     %br
-    Set in Minion Pro and Helvetica Neue Light.
+    Set in Museo Sans and Helvetica Neue Light.
     Data extracted from Markpond.
     %br
-    http://markpond.com/u?u=alex
+    https://markpond.com/u/alex
 
 #cover
   %h1 A Year of Links: #{@year.year_string}
@@ -42,9 +42,9 @@
                   .qr
                     %img{:src => bookmark.qr_for_url}
                   .bookmark_itself
-                    %h4= h bookmark.description
-                    .href= h bookmark.href
-                    .desc= h bookmark.extended
+                    %h4= h bookmark.title
+                    .href= h bookmark.url
+                    .desc= h bookmark.excerpt
                     - if bookmark.via
                       .via= h "Via: " + bookmark.via
                     .tags 

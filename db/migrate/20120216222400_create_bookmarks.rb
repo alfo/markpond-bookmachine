@@ -1,12 +1,10 @@
 class CreateBookmarks < ActiveRecord::Migration
   def self.up
     create_table "bookmarks", :force => true do |t|
-      t.string   "href"
-      t.string   "archive"
-      t.string   "description"
-      t.string   "extended"
-      t.string   "bookmark_hash"
-      t.string   "meta"
+      t.string   "url"
+      t.string   "archive_url"
+      t.string   "title"
+      t.string   "excerpt"
       t.string   "via"
       t.datetime "bookmarked_at"
       t.string   "raw_tags"

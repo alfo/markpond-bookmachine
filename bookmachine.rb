@@ -1,21 +1,18 @@
 require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'compass'
 
 #thes two are the application broken out a bit.
 require File.expand_path('../helpers', __FILE__)
 require File.expand_path('../models', __FILE__)
 
-set :haml, :format => :html5
+set :haml, { :format => :html5 }
 set :database, 'sqlite://development.db'
 
 get '/' do
   @years = Year.order("year_string")
   haml :index
-end
-
-get '/stylesheets/:stylesheet.css' do
-  scss params[:stylesheet].to_sym
 end
 
 get '/year/:year' do

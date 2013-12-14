@@ -6,34 +6,37 @@ task :environment do
   require 'rubygems'
   require 'sinatra'
   require 'sinatra/activerecord'
-  require 'nokogiri'
+  require 'json'
   require 'htmlentities'
   require File.expand_path('../../../bookmachine', __FILE__)
 end
 
 namespace :ingest do
-  task :all => [:ingest_pinboard, :tidy_utm, :cache_years]
+  task :all => [:ingest_markpond, :tidy_utm, :cache_years]
 
-  desc "Ingest all pinboard bookmarks"
-  task :ingest_pinboard => :environment do
+  desc "Ingest all markpond bookmarks"
+  task :ingest_markpond => :environment do
     puts "Ingesting bookmarks"
-    file = File.read("data/pinboard_all.xml")
-    doc = Nokogiri::XML(file)
-    doc.css("post").each do |post|
+    file = File.read("data/markpond.json")
+    doc = JSON.parse(file)
+
+    Bookmark.destroy_all
+
+    doc.each do |post|
       b = Bookmark.new
-      b.href = post.attr("href").gsub(/&?utm_.+?(&|$)/, '')
-      b.archive = post.attr("archive")
-      b.description = HTMLEntities.new.decode post.attr("description")
-      if post.attr("extended")
-        b.extended = HTMLEntities.new.decode post.attr("extended")
+      b.url =           post['url'].gsub(/&?utm_.+?(&|$)/, '')
+      b.archive_url =   post['archive_url']
+      b.title =   HTMLEntities.new.decode post['title']
+      if post['excerpt']
+        b.excerpt = HTMLEntities.new.decode post['excerpt']
       else
-        b.extended = ""
+        b.excerpt = ""
       end
-      b.bookmark_hash = post.attr("hash")
-      b.meta = post.attr("meta")
-      b.via = post.attr("via")
-      b.bookmarked_at = Time.parse(post.attr("time"))
-      b.raw_tags = post.attr("tag")
+
+      b.via = post['via']
+
+      b.bookmarked_at = Time.parse(post['created_at'])
+      b.raw_tags = post['cached_tag_list']
       b.created_at = Time.now
       
       b.save
@@ -47,8 +50,8 @@ namespace :ingest do
     puts "Removing analytics tracking query strings."
     bookmarks = Bookmark.all
     bookmarks.each do |bookmark|
-      if bookmark.href =~ /utm/
-        bookmark.href = bookmark.href.gsub(/\?utm_source.*/, "")
+      if bookmark.url =~ /utm/
+        bookmark.url = bookmark.url.gsub(/\?utm_source.*/, "")
         bookmark.save
         print "."
       else
@@ -76,6 +79,7 @@ namespace :publish do
     years = Year.all
     years.each do |y|
       year = y.year_string
+      puts "Publishing #{year}"
       `prince http://localhost:9292/year/#{year} -o #{year}.pdf`
     end
   end

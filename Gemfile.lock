@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     activemodel (3.2.1)
       activesupport (= 3.2.1)
@@ -14,11 +14,16 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.0)
     builder (3.0.0)
+    chunky_png (1.2.9)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    fssm (0.2.10)
     haml (3.1.4)
     htmlentities (4.3.1)
     i18n (0.6.0)
     multi_json (1.0.4)
-    nokogiri (1.5.0)
     rack (1.4.1)
     rack-protection (1.2.0)
       rack
@@ -39,9 +44,9 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  compass
   haml
   htmlentities
-  nokogiri
   rake
   sass
   sinatra
