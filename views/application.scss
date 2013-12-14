@@ -1,5 +1,6 @@
 body {
-  font-family: "Minion Pro";
+  font-family: "Museo Sans";
+  font-weight: 300;
   line-height: 1.4;
   font-size: 11px;
 }
@@ -7,7 +8,7 @@ body {
 #pre_front {
   page: frontmatter;
   h2 {
-    font-weight: bold;
+    font-weight: 400;
     font-size: 14px;
     text-align: right;
     margin-top: 7cm;

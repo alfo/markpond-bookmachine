@@ -1,0 +1,201 @@
+/* line 1, ../../views/application.scss */
+body {
+  font-family: "Museo Sans";
+  font-weight: 300;
+  line-height: 1.4;
+  font-size: 11px; }
+
+/* line 8, ../../views/application.scss */
+#pre_front {
+  page: frontmatter; }
+  /* line 10, ../../views/application.scss */
+  #pre_front h2 {
+    font-weight: 400;
+    font-size: 14px;
+    text-align: right;
+    margin-top: 7cm;
+    page-break-after: always;
+    text-transform: uppercase; }
+
+/* line 20, ../../views/application.scss */
+#colophon {
+  page-break-after: always;
+  margin-top: 14cm;
+  font-size: 10px;
+  page: frontmatter; }
+
+/* line 27, ../../views/application.scss */
+#cover {
+  text-align: right;
+  page-break-after: always;
+  margin-top: 7cm;
+  page: frontmatter; }
+  /* line 32, ../../views/application.scss */
+  #cover h1 {
+    font-size: 36px;
+    margin: 0 0 18px; }
+  /* line 36, ../../views/application.scss */
+  #cover h2 {
+    font-size: 24px;
+    margin: 0; }
+  /* line 40, ../../views/application.scss */
+  #cover h3 {
+    font-size: 24px;
+    margin: 0; }
+
+/* line 46, ../../views/application.scss */
+.bookmarks {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  /* line 50, ../../views/application.scss */
+  .bookmarks .bookmark {
+    clear: both;
+    page-break-inside: avoid;
+    /*padding: 0 0 20px 0;*/
+    margin: 0 0 20px 0;
+    /*border-bottom: 1px solid #888;*/ }
+    /* line 57, ../../views/application.scss */
+    .bookmarks .bookmark .href {
+      font-style: italic;
+      margin-top: 2px;
+      margin-bottom: 3px; }
+    /* line 62, ../../views/application.scss */
+    .bookmarks .bookmark .tags {
+      font-style: italic;
+      text-align: right; }
+    /* line 66, ../../views/application.scss */
+    .bookmarks .bookmark .via {
+      font-style: italic;
+      margin-top: 4px; }
+    /* line 71, ../../views/application.scss */
+    .bookmarks .bookmark h4 {
+      margin: 0;
+      font-size: 18px; }
+  /* line 76, ../../views/application.scss */
+  .bookmarks .bookmark:last-child {
+    border-bottom: none; }
+
+/* line 81, ../../views/application.scss */
+title {
+  string-set: title content(); }
+
+/* line 85, ../../views/application.scss */
+#toc h2, #index h2 {
+  font-family: "Helvetica Neue-Ultra-Light", "Helvetica NeueUltralight", "Helvetica Neue", sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-align: center;
+  font-size: 24px;
+  margin: 0 0 20px; }
+
+/* line 95, ../../views/application.scss */
+#index h2 {
+  string-set: header content(); }
+
+/* line 100, ../../views/application.scss */
+h2.month {
+  font-family: "Helvetica Neue-Ultra-Light", "Helvetica NeueUltralight", "Helvetica Neue", sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-align: center;
+  font-size: 24px;
+  margin-top: 7cm;
+  page-break-before: always;
+  page-break-after: always;
+  string-set: header content();
+  page: chapter_title; }
+
+/* line 113, ../../views/application.scss */
+h3.day {
+  font-family: "Helvetica Neue-Ultra-Light", "Helvetica NeueUltralight", "Helvetica Neue", sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-align: center;
+  font-size: 18px;
+  /*page-break-before: always;*/ }
+
+/* line 123, ../../views/application.scss */
+.month_collection {
+  page-break-after: right;
+  page-break-before: right; }
+
+/* line 128, ../../views/application.scss */
+.day_container {
+  margin-bottom: 75px; }
+
+/* line 132, ../../views/application.scss */
+#toc {
+  page-break-before: right;
+  page-break-after: right;
+  page: frontmatter; }
+
+/* line 138, ../../views/application.scss */
+#toc ul.contents {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+/* line 144, ../../views/application.scss */
+#toc ul.contents li {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px;
+  font-size: 14px; }
+
+/* line 150, ../../views/application.scss */
+#toc a {
+  color: #000;
+  text-decoration: none; }
+
+/* line 154, ../../views/application.scss */
+#toc a::after {
+  content: leader(" ") target-counter(attr(href), page);
+  font-style: normal; }
+
+/* line 159, ../../views/application.scss */
+#index ul {
+  -webkit-column-count: 2;
+  -webkit-column-gap: 1em;
+  -moz-column-count: 2;
+  -moz-column-gap: 1em;
+  column-count: 2;
+  column-gap: 1em; }
+
+/* line 168, ../../views/application.scss */
+#index ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+/* line 174, ../../views/application.scss */
+#index ul li {
+  padding: 0;
+  margin: 0; }
+
+/* line 179, ../../views/application.scss */
+#index ul li a {
+  color: #000;
+  text-decoration: none; }
+
+/* line 184, ../../views/application.scss */
+#index ul li a::after {
+  /*content: target-counter(attr(href), page) ", ";*/
+  content: leader(" ") target-counters(attr(href), page, ", ");
+  font-style: normal; }
+
+/* line 190, ../../views/application.scss */
+.bookmark_itself {
+  margin-left: 85px; }
+
+/* line 194, ../../views/application.scss */
+.qr {
+  float: left;
+  margin-right: 10px; }
+  /* line 196, ../../views/application.scss */
+  .qr img {
+    width: 75px;
+    height: 75px; }
